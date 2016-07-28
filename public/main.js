@@ -340,7 +340,6 @@ var yourEventFunction = function() {
 var postEventFunction = function() {
   // Displays content
   // side nav
-  console.log("printed");
   introSection.style.display = 'none';
   popChefSection.style.display = 'none';
   friSection.style.display = 'none';
@@ -448,6 +447,7 @@ window.addEventListener('load', function() {
 
   firebase.auth().onAuthStateChanged(function(user) {
     // if(user)
+
     startDatabaseQueries();
     if (user) {
       attendNav.style.display = "block";
@@ -565,6 +565,7 @@ function writeUserData(userId, name, email, imageUrl) {
 }
 
 function createPostElementSmall(title, description, day, dateTime, location, maxSeat, image){
+
   var html='<div class="col-xs-6 col-sm-3 placeholder">' +
             '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class=" imageHolder img-responsive" alt="Generic placeholder thumbnail">'+
             '<h4 class="titleHolder">title</h4>' +
@@ -615,17 +616,16 @@ function createPostElementSmall(title, description, day, dateTime, location, max
   postElement.getElementsByClassName('dayHolder')[0].innerText = day;
   postElement.getElementsByClassName('dateTimeHolder')[0].innerText = dateTime;
   postElement.getElementsByClassName('locationHolder')[0].innerText = location;
-  postElement.getElementsByClassName('maxSeatHolder')[0].innerText = maxseat;
-
+  postElement.getElementsByClassName('maxSeatHolder')[0].innerText = maxSeat;
+  return postElement;
 }
 
 
-function writeNewPost( username, uid, title, description, day, dateTime, location, maxSeat){
+function writeNewPost(username, uid, title, description, day, dateTime, location, maxSeat) {
   // A post entry.
   var postData = {
     username: username,
     uid: uid,
-    body: body,
     title: title,
     description: description,
     day: day,
@@ -636,7 +636,7 @@ function writeNewPost( username, uid, title, description, day, dateTime, locatio
   };
 
   // Get a key for a new Post.
-  var newPostKey = firebase.database().ref().child('posts').push().key;
+  var newPostKey = firebase.database().ref().child('history').push().key;
 
   // Write the new post's data simultaneously in the posts list and the user's post list.
   var updates = {};
@@ -690,19 +690,20 @@ function startDatabaseQueries() {
   var myUserId = firebase.auth().currentUser.uid;
   var historyRef = firebase.database().ref('history').limitToLast(100);
   var yourEventRef = firebase.database().ref('yourEvent/' + myUserId);
-
-  var fetchPostsSmall = function(postsRef, sectionElement) {
+  var fetchPostSmall = function(postsRef, sectionElement) {
     postsRef.on('child_added', function(data) {
       var author = data.val().author || 'Anonymous';
+
       var containerElement = sectionElement.getElementsByClassName('contentContainer')[0];
+      console.log(sectionElement);
+      console.log(containerElement);
       containerElement.insertBefore(
-          createPostElement(data.key, data.val().title, data.val().body, author, data.val().uid, data.val().authorPic),
+          createPostElementSmall(data.key, data.val().title, data.val().body, author, data.val().uid, data.val().authorPic),
           containerElement.firstChild);
     });
   };
-
-  fetchPosts(historyRef, historySection);
-  fetchPosts(yourEventRef, yourEventSection);
+  fetchPostSmall(historyRef, historySection);
+  fetchPostSmall(yourEventRef, yourEventSection);
 }
 
 
