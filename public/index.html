@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="./favicon.ico">
+
+    <title>Dine Around</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="./assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="./assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Dine Around</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul id="navbarUL" class="nav navbar-nav navbar-right">
+            <li id="attendNav" display="none"><a href="#">Attendence</a></li>
+            <li id="becomeNav" display="none"><a href="#">Become Chef</a></li>
+            <li id="yourEventNav" display="none"><a href="#">Your Events</a></li>
+            <li id="postEventNav" display="none"><a href="#">Post Event</a></li>
+            <button id="statusNav" type="button" class="btn btn-default navbar-btn"><!-- Place Holder --></button>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li id="introNav"class="active"><a href="#">Introduction</a></li>
+            <li id="popChefNav"><a href="#">Popular Chefs</a></li>
+            
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li id="friNav"><a href="#">Friday</a></li>
+            <li id="satNav"><a href="#">Saturday</a></li>
+            <li id="sunNav"><a href="#">Sunday</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li id="pastMealNav"><a href="#">Past Meals</a></li>
+            <li id="aboutUsNav"><a href="#">About Us</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <!-- Intro Section --> 
+        <div id="introSection">
+          <h1 class="page-header">How It Works</h1>  
+          <div class="row placeholders">
+       <!-- Postings --> 
+        <div>
+          <div class="col-md-8">
+            <div class="thumbnail">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="300" height="200" alt="Generic placeholder thumbnail">
+              <div class="caption">
+                <h3>Cheese and Fruits</h3>
+                <h4 align="left">Description:</h4>
+                <p> Enjoy a variety of different types of cheese while listening to Italian Music. Let the sourness of the fruits blend in with the buttery texture of cheese. Enjoy a variety of different types of cheese while listening to Italian Music. Let the sourness of the fruits blend in with the buttery texture of cheese. </p>
+                <h4 align="left">Time:</h4>
+                <p>5:00 - 7:00 p.m. Saturday July 16th, 2016 </p>
+                <h4 align="left">Location:</h4>
+                <p> 311 Eddy Street Apt 2, Ithaca NY</p>
+                <h4 align="left">Maximum Occupancy:</h4>
+                <p> 4 </p>
+
+                <!--  Button 1 -->
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="popover" title="Facebook Names" data-placement="left" data-content="Win Bear, John Hanks, Job Jones">People Going</button>
+
+                <!--  Button 2 -->
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                  Going
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Cheese and Fruits</h4>
+                      </div>
+                      <div class="modal-body">
+                          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="300" height="200" alt="Generic placeholder thumbnail">
+                          <h4 align="left">Description:</h4>
+                          <p> Enjoy a variety of different types of cheese while listening to Italian Music. Let the sourness of the fruits blend in with the buttery texture of cheese. Enjoy a variety of different types of cheese while listening to Italian Music. Let the sourness of the fruits blend in with the buttery texture of cheese. </p>
+                          <h4 align="left">Time:</h4>
+                          <p>5:00 - 7:00 p.m. Saturday July 16th, 2016 </p>
+                          <h4 align="left">Maximum Occupancy:</h4>
+                          <p> 4 </p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Pay Now</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              <!--  Buttons 3 -->
+              <button class="btn btn-primary btn-lg" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                  Comments
+                </button>
+
+                <div class="collapse" id="collapseExample">
+                  <!-- spacer -->
+                  <p></p>
+                  <div class="comments-container">
+                    <form class="add-comment commentLooks" action="#">
+                      <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon3">
+                          <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                          Win Bear
+                        </span>
+                        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="comment...">
+                      </div>
+                    </form>
+                    <!-- spacer -->
+                    <p></p>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading" align="left"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Win Bear</div>
+                        <div class="panel-body">
+                          <p align="left">Looks very nice</p>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading" align="left"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Li Kum</div>
+                        <div class="panel-body">
+                          <p align="left">I'm down</p>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+
+              
+
+
+          
+
+              <!-- spacer -->
+              <p></p>
+            
+
+<!-- Comment container [Caption] -->
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <!-- Chef Section --> 
+      <div id="popChefSection" style="display:none">
+        <h1 class="page-header">Popular Chefs</h1> 
+          <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Win</h4>
+              <span class="text-muted">Enjoy a variety of different types of cheese while listening to Italian Music. Let the sourness of the fruits blend in with the buttery texture of cheese. Enjoy a variety of different types of cheese while listening to Italian Music. Let the sourness of the fruits blend in with the buttery texture of cheese.</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Perseus</h4>
+              <span class="text-muted">Enjoy a variety of different types of cheese while listening to Italian Music. Let the sourness of the fruits blend in with the buttery texture of cheese. Enjoy a variety of different types of cheese while listening to Italian Music. Let the sourness of the fruits blend in with the buttery texture of cheese.</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Tojiro</h4>
+              <span class="text-muted">Enjoy a variety of different types of cheese while listening to Italian Music. Let the sourness of the fruits blend in with the buttery texture of cheese. Enjoy a variety of different types of cheese while listening to Italian Music. Let the sourness of the fruits blend in with the buttery texture of cheese.</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Eric</h4>
+              <span class="text-muted">Enjoy a variety of different types of cheese while listening to Italian Music. Let the sourness of the fruits blend in with the buttery texture of cheese. Enjoy a variety of different types of cheese while listening to Italian Music. Let the sourness of the fruits blend in with the buttery texture of cheese.</span>
+            </div>
+          </div>
+      </div>
+      <!-- Friday Section --> 
+      <div id="friSection" style="display:none">
+        <h1 class="page-header">Friday</h1> 
+          <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+            </div>
+          </div>
+        <h1>
+      </div>
+      <!-- Saturday Section --> 
+      <div id="satSection" style="display:none">
+        <h1 class="page-header">Saturday</h1> 
+          <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+            </div>
+          </div>
+        <h1>
+      </div>
+
+      <!-- Sunday Section --> 
+      <div id="sunSection" style="display:none">
+        <h1 class="page-header">Sunday</h1> 
+          <div class="row placeholders">
+          </div>
+        <h1>
+      </div>
+
+      <!-- Your History Section --> 
+      <div id="pastMealSection" style="display:none">
+        <h1 class="page-header">Past Meals</h1> 
+          <div id="historyContent" class="row placeholders">
+          </div>
+        <h1>
+      </div>
+
+      <!-- Your About Us Section --> 
+      <div id="aboutUsSection" style="display:none">
+        <h1 class="page-header">About Us</h1> 
+          <div class="row placeholders">
+          </div>
+        <h1>
+      </div>
+
+      <!-- Attendance Section --> 
+      <div id="attendSection" style="display:none">
+        <h1 class="page-header">Your Attendence</h1> 
+          <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Cheese and Fruits</h4>
+                              <!--  Button 2 -->
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#id1">
+                  Info
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="id1" tabindex="-1" role="dialog" aria-labelledby="id2">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="id2">Cheese and Fruits</h4>
+                      </div>
+                      <div class="modal-body">
+                          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="300" height="200" alt="Generic placeholder thumbnail">
+                          <h4 align="left">Description:</h4>
+                          <p> Enjoy a variety of different types of cheese while listening to Italian Music. Let the sourness of the fruits blend in with the buttery texture of cheese. Enjoy a variety of different types of cheese while listening to Italian Music. Let the sourness of the fruits blend in with the buttery texture of cheese. </p>
+                          <h4 align="left">Time:</h4>
+                          <p>5:00 - 7:00 p.m. Saturday July 16th, 2016 </p>
+                          <h4 align="left">Maximum Occupancy:</h4>
+                          <p> 4 </p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Pay Now</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+ 
+            </div>
+          </div>
+        <h1>
+      </div>
+
+      <!-- Become Chef Section --> 
+      <div id="becomeSection" style="display:none">
+        <h1 class="page-header">Become a Chef</h1> 
+          <div class="row placeholders">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="300" height="300" alt="Generic placeholder thumbnail">
+              <h1> Pakin's experience with Dine Around</h1>
+              <p>Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo. Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo. Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo. Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo. </p>
+              <h2> You can become like Pakin in just 2 steps!</h2>
+              <h3>1. Download, read, and fill in the application form</h3>
+              <button id="appForm" class="btn btn-lg btn-primary" onclick="downloadApp()">Click to Download</button>  
+              <h3> 2. Upload your Application</h3>
+              <form action="#" style="background-color:blue;" id="uploadAppForm">
+              <input type="file" id="uploadFile" name="file" style="background-color:red; align=right;"/>
+
+              <button type="submit" class="btn btn-lg btn-primary">Upload</button>
+            </form>
+              
+              
+          </div>
+        <h1>
+      </div>
+      <!-- Your Event Section --> 
+      <div id="yourEventSection" style="display:none">
+        <h1 class="page-header">Your Event</h1> 
+          <div id="yourEventContent" class="row placeholders">
+            
+          </div>
+        <h1>
+      </div>
+      <!-- Post Events Section --> 
+      <div id="postEventSection" style="display:none">
+        <h1 class="page-header">Post Event</h1> 
+          <div class="row placeholders">
+              <form id="postForm" class="form">
+                <div class="form-group">
+                  <label>Event Title</label>
+                  <input id="titleInput" type="text" class="form-control" placeholder="Korean Night" required>
+                  <label>Description</label>
+                  <textarea id="descriptionInput" class="form-control" placeholder="keep it concise" rows="4" cols="30"
+                  required></textarea>
+                  <label>Day</label><br>
+                  <input type="radio" name="day" value="friday" checked> Friday<br>
+                  <input type="radio" name="day" value="saturday"> Saturday<br>
+                  <input type="radio" name="day" value="sunday"> Sunday<br>
+
+                  <label>Date-Time</label>
+                  <input id="dateTimeInput" type="datetime-local" class="form-control" required>
+                  <label>Location</label>
+                  <input id="locationInput" type="text" class="form-control" placeholder="311 Eddy st apt 2 Ithaca, NY" required>
+                  <br>
+                  <label>Maximum Seats</label>
+                  <br>
+                  <input id="maxSeatInput" type="number" name="quantity" min="1" required>
+                  <br>
+                  <br>
+                  <label>Event Picture</label>
+                  <br>
+                  <input type="file" name="file" style="background-color:red; align=right;"required/>
+
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+              </form>
+          </div>
+        <h1>
+      </div>
+
+
+
+        <!-- Content Container ends -->  
+        <h1 class="page-header">About Us</h1>
+        <div class="row placeholders">
+          <p>Contact Us</p>
+        </div>
+      </div>
+      
+    </div>
+
+       <!-- Firebase javascript
+    ================================================== --> 
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAV8yxUSPGwNu4vqpsrD0eVA0JEfsApr00",
+        authDomain: "project-6639042900366937835.firebaseapp.com",
+        databaseURL: "https://project-6639042900366937835.firebaseio.com",
+        storageBucket: "project-6639042900366937835.appspot.com",
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script src="./main.js"></script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="./dist/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="./assets/js/vendor/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
