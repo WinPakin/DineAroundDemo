@@ -565,22 +565,25 @@ function writeUserData(userId, name, email, imageUrl) {
 }
 
 function createPostElementSmall(title, description, day, dateTime, location, maxSeat, image){
+  //creates Distinct IDs, pray to God id1 doesn't equal id2
+  var id1 = String(Math.floor((Math.random() * 100000) + 1));
+  var id2 = String(Math.floor((Math.random() * 100000) + 1));
 
   var html='<div class="col-xs-6 col-sm-3 placeholder">' +
             '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class=" imageHolder img-responsive" alt="Generic placeholder thumbnail">'+
             '<h4 class="titleHolder">title</h4>' +
                            ' <!--  Button 2 --> ' +
               '<!-- Button trigger modal -->' +
-             ' <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#cheeseModal">' +
+             ' <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#'+id1+'">' +
               '  Info ' + 
               '</button>' +
               '<!-- Modal -->' +
-              '<div class="modal fade" id="cheeseModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
+              '<div class="modal fade" id="'+id1+'" tabindex="-1" role="dialog" aria-labelledby="'+id2+'">' +
                 '<div class="modal-dialog" role="document">'+
                   '<div class="modal-content">'+
                     '<div class="modal-header">'+
                       '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
-                      '<h4 class="titleHolder modal-title" id="myModalLabel">title</h4>'+
+                      '<h4 class="titleHolder modal-title" id="'+id2+'">title</h4>'+
                     '</div>'+
                     '<div class="modal-body">'+
                         '<img class="imageHolder" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="300" height="200" alt="Generic placeholder thumbnail">'+
@@ -621,6 +624,11 @@ function createPostElementSmall(title, description, day, dateTime, location, max
 }
 
 
+
+
+
+
+
 function writeNewPost(username, uid, title, description, day, dateTime, location, maxSeat) {
   // A post entry.
   var postData = {
@@ -643,6 +651,16 @@ function writeNewPost(username, uid, title, description, day, dateTime, location
   updates['/history/' + newPostKey] = postData;
   updates['/attendance/' + uid + '/' + newPostKey] = postData;
   updates['/yourEvent/' + uid + '/' + newPostKey] = postData;
+  if(day =="friday"){
+    updates['/friday/' + newPostKey] = postData;
+  }
+  if(day =="saturday"){
+    updates['/saturday/' + newPostKey] = postData;
+  }
+  if(day =="sunday"){
+    updates['/sunday/' + newPostKey] = postData;
+  }
+
   return firebase.database().ref().update(updates);
 }
 
@@ -695,11 +713,11 @@ function startDatabaseQueries() {
       var author = data.val().author || 'Anonymous';
 
       var containerElement = sectionElement.getElementsByClassName('contentContainer')[0];
-      console.log(sectionElement);
-      console.log(containerElement);
       containerElement.insertBefore(
-          createPostElementSmall(data.key, data.val().title, data.val().body, author, data.val().uid, data.val().authorPic),
+          createPostElementSmall(data.val().title, data.val().description, data.val().day, data.val().dateTime, data.val().location, data.val().maxseat, data.val().image),
           containerElement.firstChild);
+
+       // createPostElementSmall(title, description, day, dateTime, location, maxSeat, image)
     });
   };
   fetchPostSmall(historyRef, historySection);
