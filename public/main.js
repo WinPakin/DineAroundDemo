@@ -426,6 +426,7 @@ var uploadFucntion = function(evt){
 window.addEventListener('load', function() {
   // need
   $(function () {
+    
   $('[data-toggle="popover"]').popover()
 })
   // on-click navigation side
@@ -449,6 +450,7 @@ window.addEventListener('load', function() {
     // if(user)
 
     startDatabaseQueries();
+
     if (user) {
       attendNav.style.display = "block";
       becomeNav.style.display = "block";
@@ -623,6 +625,136 @@ function createPostElementSmall(title, description, day, dateTime, location, max
   return postElement;
 }
 
+  function createPostElementBig(title, description, day, dateTime, location, maxSeat, image){ 
+    //creates Distinct IDs, pray to God id1 doesn't equal id2
+  var id1 = String(Math.floor((Math.random() * 100000) + 1));
+  var id2 = String(Math.floor((Math.random() * 100000) + 1));
+  var id3 = String(Math.floor((Math.random() * 100000) + 1));
+  var id4 = String(Math.floor((Math.random() * 100000) + 1));
+  var popNum = String(Math.floor((Math.random() * 100000) + 1));
+    $(function () {
+    
+  $('[data-toggle="'+popNum+'"]').popover()
+})      
+  var html='<div>'+
+          '<div class="col-md-8">'+
+            '<div class="thumbnail">'+
+              '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="300" height="200" alt="Generic placeholder thumbnail">'+
+              '<div class="caption">'+
+                '<h3 class="titleHolder">titleHolder</h3>'+
+                '<h4 align="left">Description:</h4>'+
+                '<p class="descriptionHolder"> descriptionHolder</p>'+
+                '<h4 align="left">Day:</h4>'+
+                '<p class="dayHolder">dayHolder </p>'+
+                '<h4 align="left">Time:</h4>'+
+                '<p class="dateTimeHolder"> dateTimeHolder</p>'+
+                '<h4 align="left">Location:</h4>'+
+                '<p class="locationHolder"> locationHolder</p>'+
+                '<h4 align="left">Maximum Occupancy:</h4>'+
+                '<p class="maxSeatHolder">maxSeatHolder</p>'+
+
+                '<!--  Button 1 -->'+
+                '<button type="button" class="btn btn-primary btn-lg" data-toggle="'+popNum+'" title="Facebook Names" data-placement="left" data-content="Win Bear, John Hanks, Job Jones">People Going</button>'+
+
+              ' <!--  Button 2 --> ' +
+              '<!-- Button trigger modal -->' +
+             ' <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#'+id1+'">' +
+              '  Going ' + 
+              '</button>' +
+              '<!-- Modal -->' +
+              '<div class="modal fade" id="'+id1+'" tabindex="-1" role="dialog" aria-labelledby="'+id2+'">' +
+                '<div class="modal-dialog" role="document">'+
+                  '<div class="modal-content">'+
+                    '<div class="modal-header">'+
+                      '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                      '<h4 class="titleHolder modal-title" id="'+id2+'">title</h4>'+
+                    '</div>'+
+                    '<div class="modal-body">'+
+                        '<img class="imageHolder" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="300" height="200" alt="Generic placeholder thumbnail">'+
+                        '<h4 align="left">Description:</h4>'+
+                        '<p class="descriptionHolder">holder</p>'+
+                        '<h4 align="left">Day:</h4>'+
+                        '<p class="dayHolder">holder</p>'+
+                        '<h4 align="left">Time:</h4>'+
+                        '<p class="dateTimeHolder">holder</p>'+
+                        '<h4 align="left">Location:</h4>'+
+                        '<p class="locationHolder">holder</p>'+
+                        '<h4 align="left">Maximum Occupancy:</h4>'+
+                        '<p class="maxSeatHolder">holder</p>'+
+                    '</div>'+
+                    '<div class="modal-footer">'+
+                      '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>'+
+                      '<button type="button" class="btn btn-primary">Pay Now</button>'+
+                    '</div>'+
+                  '</div>'+
+                '</div>'+
+              '</div>'+
+
+              '<!--  Buttons 3 -->'+
+              '<button class="btn btn-primary btn-lg" type="button" data-toggle="collapse" data-target="#'+id3+'" aria-expanded="false" aria-controls="collapseExample">'+
+                  'Comments'+
+                '</button>'+
+
+                '<div class="collapse" id="'+id3+'">'+
+                  '<!-- spacer -->'+
+                  '<p></p>'+
+                  '<div class="comments-container">'+
+                    '<form class="add-comment commentLooks" action="#">'+
+                      '<div class="input-group">'+
+                        '<span class="input-group-addon" id="'+id4+'">'+
+                          '<span class="glyphicon glyphicon-user" aria-hidden="true"></span>'+
+                          'Win Bear'+
+                        '</span>'+
+                        '<input type="text" class="form-control" aria-describedby="'+id4+'" placeholder="comment...">'+
+                      '</div>'+
+                    '</form>'+
+                    '<!-- spacer -->'+
+                    '<p></p>'+
+                    '<div class="panel panel-primary">'+
+                        '<div class="panel-heading" align="left"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Win Bear</div>'+
+                        '<div class="panel-body">'+
+                          '<p align="left">Looks very nice</p>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="panel panel-primary">'+
+                        '<div class="panel-heading" align="left"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Li Kum</div>'+
+                        '<div class="panel-body">'+
+                          '<p align="left">Im down</p>'+
+                        '</div>'+
+                    '</div>'+
+                  '</div>'+
+                '</div>'+
+              '<!-- spacer -->'+
+              '<p></p>'+
+'<!-- Comment container [Caption] -->'+
+              '</div>'+
+            '</div>'+
+          '</div>'+
+        '</div>';
+
+  // Create the DOM element from the HTML.
+  var div = document.createElement('div');
+  div.innerHTML = html;
+  var postElement = div.firstChild;
+  // Set values.
+  postElement.getElementsByClassName('titleHolder')[0].innerText = title;
+  postElement.getElementsByClassName('titleHolder')[1].innerText = title;
+  //postElement.getElementsByClassName('imageHolder')[0].setAttribute("src", image);
+  //postElement.getElementsByClassName('imageHolder')[1].setAttribute("src", image);
+  postElement.getElementsByClassName('descriptionHolder')[0].innerText = description;
+  postElement.getElementsByClassName('dayHolder')[0].innerText = day;
+  postElement.getElementsByClassName('dateTimeHolder')[0].innerText = dateTime;
+  postElement.getElementsByClassName('locationHolder')[0].innerText = location;
+  postElement.getElementsByClassName('maxSeatHolder')[0].innerText = maxSeat;
+
+  postElement.getElementsByClassName('descriptionHolder')[1].innerText = description;
+  postElement.getElementsByClassName('dayHolder')[1].innerText = day;
+  postElement.getElementsByClassName('dateTimeHolder')[1].innerText = dateTime;
+  postElement.getElementsByClassName('locationHolder')[1].innerText = location;
+  postElement.getElementsByClassName('maxSeatHolder')[1].innerText = maxSeat;
+  return postElement;
+      
+  }
 
 
 
@@ -702,12 +834,20 @@ postForm.onsubmit = function(e) {
  */
  var historySection = document.getElementById('pastMealSection');
  var yourEventSection = document.getElementById('yourEventSection');
+ var fridaySection = document.getElementById('friSection');
+ var saturdaySection = document.getElementById('satSection');
+ var sundaySection = document.getElementById('sunSection');
+
 
 function startDatabaseQueries() {
 
   var myUserId = firebase.auth().currentUser.uid;
   var historyRef = firebase.database().ref('history').limitToLast(100);
   var yourEventRef = firebase.database().ref('yourEvent/' + myUserId);
+  var fridayRef = firebase.database().ref('friday').limitToLast(100);
+  var saturdayRef = firebase.database().ref('saturday').limitToLast(100);
+  var sundayRef = firebase.database().ref('sunday').limitToLast(100);
+
   var fetchPostSmall = function(postsRef, sectionElement) {
     postsRef.on('child_added', function(data) {
       var author = data.val().author || 'Anonymous';
@@ -720,8 +860,26 @@ function startDatabaseQueries() {
        // createPostElementSmall(title, description, day, dateTime, location, maxSeat, image)
     });
   };
+
+  var fetchPostBig = function(postsRef, sectionElement) {
+  postsRef.on('child_added', function(data) {
+    
+    var author = data.val().author || 'Anonymous';
+    var containerElement = sectionElement.getElementsByClassName('contentContainer')[0];
+    containerElement.insertBefore(
+        createPostElementBig(data.val().title, data.val().description, data.val().day, data.val().dateTime, data.val().location, data.val().maxseat, data.val().image),
+        containerElement.firstChild);
+
+     
+  });
+  };
+
+
   fetchPostSmall(historyRef, historySection);
   fetchPostSmall(yourEventRef, yourEventSection);
+  fetchPostBig(fridayRef,fridaySection);
+  fetchPostBig(saturdayRef,saturdaySection);
+  fetchPostBig(sundayRef,sundaySection);
 }
 
 
