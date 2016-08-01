@@ -447,11 +447,12 @@ window.addEventListener('load', function() {
 
 
   firebase.auth().onAuthStateChanged(function(user) {
-    // if(user)
-    console.log(user);
-    startDatabaseQueries();
+    
 
+   
+    // if(user)
     if (user) {
+      startDatabaseQueries();
       attendNav.style.display = "block";
       becomeNav.style.display = "block";
       yourEventNav.style.display = "none";
@@ -898,8 +899,6 @@ postForm.onsubmit = function(e) {
 
 
 function startDatabaseQueries() {
-  console.log("SDQ begins");
-  console.log(firebase.auth().currentUser.uid);
   var myUserId = firebase.auth().currentUser.uid;
   var historyRef = firebase.database().ref('history').limitToLast(100);
   var yourEventRef = firebase.database().ref('yourEvent/' + myUserId);
