@@ -447,11 +447,12 @@ window.addEventListener('load', function() {
 
 
   firebase.auth().onAuthStateChanged(function(user) {
+    
+
+   
     // if(user)
-
-    startDatabaseQueries();
-
     if (user) {
+      startDatabaseQueries();
       attendNav.style.display = "block";
       becomeNav.style.display = "block";
       yourEventNav.style.display = "none";
@@ -625,7 +626,8 @@ function createPostElementSmall(title, description, day, dateTime, location, max
   return postElement;
 }
 
-  function createPostElementBig(title, description, day, dateTime, location, maxSeat, image){ 
+  function createPostElementBig(postId, title, description, day, dateTime, location, maxSeat, image){
+  var uid = firebase.auth().currentUser.uid; 
     //creates Distinct IDs, pray to God id1 doesn't equal id2
   var id1 = String(Math.floor((Math.random() * 100000) + 1));
   var id2 = String(Math.floor((Math.random() * 100000) + 1));
@@ -699,30 +701,17 @@ function createPostElementSmall(title, description, day, dateTime, location, max
                   '<!-- spacer -->'+
                   '<p></p>'+
                   '<div class="comments-container">'+
-                    '<form class="add-comment commentLooks" action="#">'+
+                    '<form class="addCommentForm commentLooks" action="#">'+
                       '<div class="input-group">'+
                         '<span class="input-group-addon" id="'+id4+'">'+
                           '<span class="glyphicon glyphicon-user" aria-hidden="true"></span>'+
                           'Win Bear'+
                         '</span>'+
-                        '<input type="text" class="form-control" aria-describedby="'+id4+'" placeholder="comment...">'+
+                        '<input type="text" class="commentInput form-control" aria-describedby="'+id4+'" placeholder="comment...">'+
                       '</div>'+
                     '</form>'+
                     '<!-- spacer -->'+
                     '<p></p>'+
-                    '<div class="panel panel-primary">'+
-                        '<div class="panel-heading" align="left"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Win Bear</div>'+
-                        '<div class="panel-body">'+
-                          '<p align="left">Looks very nice</p>'+
-                        '</div>'+
-                    '</div>'+
-                    '<div class="panel panel-primary">'+
-                        '<div class="panel-heading" align="left"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Li Kum</div>'+
-                        '<div class="panel-body">'+
-                          '<p align="left">Im down</p>'+
-                        '</div>'+
-                    '</div>'+
-                  '</div>'+
                 '</div>'+
               '<!-- spacer -->'+
               '<p></p>'+
@@ -752,11 +741,81 @@ function createPostElementSmall(title, description, day, dateTime, location, max
   postElement.getElementsByClassName('dateTimeHolder')[1].innerText = dateTime;
   postElement.getElementsByClassName('locationHolder')[1].innerText = location;
   postElement.getElementsByClassName('maxSeatHolder')[1].innerText = maxSeat;
+  // comments
+  var addCommentForm = postElement.getElementsByClassName('addCommentForm')[0];
+  var commentInput = postElement.getElementsByClassName('commentInput')[0];
+  // Create new comment.
+  addCommentForm.onsubmit = function(e) {
+    e.preventDefault();
+    createNewComment(postId, firebase.auth().currentUser.displayName, uid, commentInput.value);
+    commentInput.value = '';
+    //commentInput.parentElement.MaterialTextfield.boundUpdateClassesHandler();
+  };
+
+  // Listen for comments.
+  // [START child_event_listener_recycler]
+  var commentsRef = firebase.database().ref('post-comments/' + postId);
+  commentsRef.on('child_added', function(data) {
+    addCommentElement(postElement, data.key, data.val().text, data.val().author);
+  });
+    commentsRef.on('child_changed', function(data) {
+    setCommentValues(postElement, data.key, data.val().text, data.val().author);
+  });
+
+  commentsRef.on('child_removed', function(data) {
+    deleteComment(postElement, data.key);
+  });
+  // [END child_event_listener_recycler]
   return postElement;
       
   }
 
+/**
+ * Writes a new comment for the given post.
+ */
+function createNewComment(postId, username, uid, text) {
+  firebase.database().ref('post-comments/' + postId).push({
+    text: text,
+    author: username,
+    uid: uid
+  });
+}
 
+/**
+ * Creates a comment element and adds it to the given postElement.
+ */
+function addCommentElement(postElement, id, text, author) {
+  var comment = document.createElement('div');
+  comment.classList.add('comment-' + id);
+  comment.classList.add('panel');
+  comment.classList.add('panel-primary');
+  comment.innerHTML = '<div class="username panel-heading" align="left"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Win Bear</div>'+
+                        '<div class="panel-body">'+
+                          '<p align="left" class="comment">Looks very nice</p>'+
+                        '</div>';
+  comment.getElementsByClassName('comment')[0].innerText = text;
+  comment.getElementsByClassName('username')[0].innerText = author || 'Anonymous';
+                   
+
+  var commentsContainer = postElement.getElementsByClassName('comments-container')[0];
+  commentsContainer.appendChild(comment);
+}
+/**
+ * Sets the comment's values in the given postElement.
+ */
+function setCommentValues(postElement, id, text, author) {
+  var comment = postElement.getElementsByClassName('comment-' + id)[0];
+  comment.getElementsByClassName('comment')[0].innerText = text;
+  comment.getElementsByClassName('username')[0].innerText = author;
+}
+
+/**
+ * Deletes the comment of the given ID in the given postElement.
+ */
+function deleteComment(postElement, id) {
+  var comment = postElement.getElementsByClassName('comment-' + id)[0];
+  comment.parentElement.removeChild(comment);
+}
 
 
 
@@ -840,7 +899,6 @@ postForm.onsubmit = function(e) {
 
 
 function startDatabaseQueries() {
-
   var myUserId = firebase.auth().currentUser.uid;
   var historyRef = firebase.database().ref('history').limitToLast(100);
   var yourEventRef = firebase.database().ref('yourEvent/' + myUserId);
@@ -867,7 +925,7 @@ function startDatabaseQueries() {
     var author = data.val().author || 'Anonymous';
     var containerElement = sectionElement.getElementsByClassName('contentContainer')[0];
     containerElement.insertBefore(
-        createPostElementBig(data.val().title, data.val().description, data.val().day, data.val().dateTime, data.val().location, data.val().maxseat, data.val().image),
+        createPostElementBig(data.key,data.val().title, data.val().description, data.val().day, data.val().dateTime, data.val().location, data.val().maxseat, data.val().image),
         containerElement.firstChild);
 
      
